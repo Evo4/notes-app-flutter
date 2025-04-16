@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app/utils/logger.dart';
 
+// [MyHomePage]
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -19,6 +20,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// [_MyHomePageState]
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
