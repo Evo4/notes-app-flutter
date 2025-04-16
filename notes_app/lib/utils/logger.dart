@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:logger/web.dart';
 
 // log
-final log = Log.defaultLog;
+final log = Log();
 
 // Log
 class Log {
-  static final defaultLog = Log();
+  Log._privateConstructor();
+  static final Log _instance = Log._privateConstructor();
+  factory Log() => _instance;
 
   late final printer = PrettyPrinter(
     stackTraceBeginIndex: 1,
