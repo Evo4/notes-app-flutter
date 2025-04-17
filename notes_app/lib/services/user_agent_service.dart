@@ -1,7 +1,8 @@
 import 'package:package_info_plus/package_info_plus.dart';
 
 class UserAgentService {
-  UserAgentService._privateConstructor();
+  UserAgentService._privateConstructor({required PackageInfo packageInfo})
+    : _packageInfo = packageInfo;
 
   // Public Properties
   String get appName {
@@ -21,12 +22,14 @@ class UserAgentService {
   }
 
   // Private Properties
-  late final PackageInfo _packageInfo;
+  final PackageInfo _packageInfo;
 
   // Entrypoint
   static Future<UserAgentService> create() async {
-    var service = UserAgentService._privateConstructor();
-    service._packageInfo = await PackageInfo.fromPlatform();
+    final packageInfo = await PackageInfo.fromPlatform();
+    var service = UserAgentService._privateConstructor(
+      packageInfo: packageInfo,
+    );
     return service;
   }
 }
