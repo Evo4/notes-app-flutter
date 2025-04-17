@@ -1,15 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app/screens/home_page.dart';
+import 'package:notes_app/services/user_agent_service.dart';
 import 'package:notes_app/utils/logger.dart';
 
-void startupHook() {
+Future<void> startupHook() async {
+  var userAgentService = await UserAgentService.create();
+  
   var message = 'platform: $defaultTargetPlatform';
-    log.debug(message);
+  message += '\nApp Name: ${userAgentService.appName}';
+  message += '\nVersion: ${userAgentService.version}';
+  message += '\nBuild Number: ${userAgentService.buildNumber}';
+  message += '\nPackage Name: ${userAgentService.packageName}';
+  log.debug(message);
 }
 
-void main() {
-  startupHook();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await startupHook();
   runApp(const NotesApp());
 }
 
